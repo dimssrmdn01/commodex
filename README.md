@@ -1,4 +1,4 @@
-#  COMMODEX — Market Price Medallion Data Engine
+#  COMMODEX - Market Price Medallion Data Engine
 
 [![Pipeline](https://github.com/dimssrmdn01/commodex/actions/workflows/pipeline.yml/badge.svg)](https://github.com/dimssrmdn01/commodex/actions/workflows/pipeline.yml)
 ![dbt](https://img.shields.io/badge/dbt-postgres-orange?style=flat-square&logo=dbt)
