@@ -3,5 +3,5 @@ pandas
 sqlalchemy
 psycopg2-binary
 python-dotenv
-dbt-core==1.8.0
-dbt-postgres==1.8.0
+dbt-core==1.13.0rc1
+dbt-postgres==1.11.0
