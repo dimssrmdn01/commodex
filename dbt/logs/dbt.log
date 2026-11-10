@@ -1,0 +1,668 @@
+[0m07:38:22.767457 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017ADF20A010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017AE3AE74D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017AE3AE7510>]}
+
+
+============================== 07:38:22.776117 | 6f17356f-30db-4400-a451-5cb12046da92 ==============================
+[0m07:38:22.776117 [info ] [MainThread]: Running with dbt=1.13.0-rc1
+[0m07:38:22.778310 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'target_path': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': '.', 'use_colors': 'True', 'hints_enabled': 'True', 'invocation_command': 'dbt debug --profiles-dir .', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs'}
+[0m07:38:22.779367 [debug] [MainThread]: Tracking: tracking
+[0m07:38:22.817776 [info ] [MainThread]: dbt version: 1.13.0-rc1
+[0m07:38:22.818849 [info ] [MainThread]: python version: 3.11.9
+[0m07:38:22.819913 [info ] [MainThread]: python path: D:\Dawnloads\My Own Project\komoditas-data-pipeline\venv\Scripts\python.exe
+[0m07:38:22.820984 [info ] [MainThread]: os info: Windows-10-10.0.26300-SP0
+[0m07:38:22.822062 [info ] [MainThread]: Using profiles dir at .
+[0m07:38:22.823156 [info ] [MainThread]: Using profiles.yml file at .\profiles.yml
+[0m07:38:22.824230 [info ] [MainThread]: Using dbt_project.yml file at D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\dbt_project.yml
+[0m07:38:22.825301 [info ] [MainThread]: Configuration:
+[0m07:38:22.826365 [info ] [MainThread]:   profiles.yml file [[31mERROR not found[0m]
+[0m07:38:22.827437 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m07:38:22.827981 [info ] [MainThread]: Required dependencies:
+[0m07:38:22.829045 [debug] [MainThread]: Executing "git --help"
+[0m07:38:22.918458 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m07:38:22.919601 [debug] [MainThread]: STDERR: "b''"
+[0m07:38:22.920133 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m07:38:22.921302 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m07:38:22.922399 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m07:38:22.923466 [info ] [MainThread]: dbt looked for a profiles.yml file in .\profiles.yml, but did
+not find one. For more information on configuring your profile, consult the
+documentation:
+
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m07:38:22.923999 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\dbt_project.yml> not found
+
+[0m07:38:22.925613 [debug] [MainThread]: Command `dbt debug` failed at 07:38:22.925613 after 0.33 seconds
+[0m07:38:22.926678 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017AE398A410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017AE3A4AB10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017AE3A49BD0>]}
+[0m07:38:22.927755 [debug] [MainThread]: Flushing usage events
+[0m07:38:26.744434 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m07:38:40.419940 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F7E6F3E390>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F7E6EEDD50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F7E6F83810>]}
+
+
+============================== 07:38:40.426404 | 6791ad70-8c43-4ff0-b300-ca56b61ce74e ==============================
+[0m07:38:40.426404 [info ] [MainThread]: Running with dbt=1.13.0-rc1
+[0m07:38:40.427987 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'static_parser': 'True', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': '.', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'invocation_command': 'dbt debug --profiles-dir .', 'use_experimental_parser': 'False', 'use_colors': 'True', 'log_path': 'logs'}
+[0m07:38:40.429042 [debug] [MainThread]: Tracking: tracking
+[0m07:38:40.459558 [info ] [MainThread]: dbt version: 1.13.0-rc1
+[0m07:38:40.461238 [info ] [MainThread]: python version: 3.11.9
+[0m07:38:40.462334 [info ] [MainThread]: python path: D:\Dawnloads\My Own Project\komoditas-data-pipeline\venv\Scripts\python.exe
+[0m07:38:40.462925 [info ] [MainThread]: os info: Windows-10-10.0.26300-SP0
+[0m07:38:40.464571 [info ] [MainThread]: Using profiles dir at .
+[0m07:38:40.465105 [info ] [MainThread]: Using profiles.yml file at .\profiles.yml
+[0m07:38:40.466748 [info ] [MainThread]: Using dbt_project.yml file at D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\dbt_project.yml
+[0m07:38:40.468391 [info ] [MainThread]: Configuration:
+[0m07:38:40.468938 [info ] [MainThread]:   profiles.yml file [[31mERROR not found[0m]
+[0m07:38:40.470068 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m07:38:40.471150 [info ] [MainThread]: Required dependencies:
+[0m07:38:40.472266 [debug] [MainThread]: Executing "git --help"
+[0m07:38:40.548118 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m07:38:40.549184 [debug] [MainThread]: STDERR: "b''"
+[0m07:38:40.550224 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m07:38:40.551294 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m07:38:40.552374 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m07:38:40.553421 [info ] [MainThread]: dbt looked for a profiles.yml file in .\profiles.yml, but did
+not find one. For more information on configuring your profile, consult the
+documentation:
+
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m07:38:40.553948 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\dbt_project.yml> not found
+
+[0m07:38:40.556661 [debug] [MainThread]: Command `python -m dbt.cli.main debug` failed at 07:38:40.556661 after 0.35 seconds
+[0m07:38:40.557820 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F7E6EED350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F7E6EFA350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F7E6EFBD10>]}
+[0m07:38:40.558886 [debug] [MainThread]: Flushing usage events
+[0m07:38:42.416960 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m07:40:55.950012 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BC730B80D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BC73159510>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BC73159110>]}
+
+
+============================== 07:40:55.957589 | 2694da16-c891-498b-aabe-68a5a081930e ==============================
+[0m07:40:55.957589 [info ] [MainThread]: Running with dbt=1.13.0-rc1
+[0m07:40:55.960149 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': '.', 'use_colors': 'True', 'hints_enabled': 'True', 'invocation_command': 'dbt debug --profiles-dir .', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs'}
+[0m07:40:55.961175 [debug] [MainThread]: Tracking: tracking
+[0m07:40:55.994570 [info ] [MainThread]: dbt version: 1.13.0-rc1
+[0m07:40:55.997095 [info ] [MainThread]: python version: 3.11.9
+[0m07:40:55.998092 [info ] [MainThread]: python path: D:\Dawnloads\My Own Project\komoditas-data-pipeline\venv\Scripts\python.exe
+[0m07:40:56.000098 [info ] [MainThread]: os info: Windows-10-10.0.26300-SP0
+[0m07:40:56.001092 [info ] [MainThread]: Using profiles dir at .
+[0m07:40:56.002093 [info ] [MainThread]: Using profiles.yml file at .\profiles.yml
+[0m07:40:56.002093 [info ] [MainThread]: Using dbt_project.yml file at D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\dbt_project.yml
+[0m07:40:56.004571 [info ] [MainThread]: Configuration:
+[0m07:40:56.005227 [info ] [MainThread]:   profiles.yml file [[31mERROR not found[0m]
+[0m07:40:56.006238 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m07:40:56.007238 [info ] [MainThread]: Required dependencies:
+[0m07:40:56.008237 [debug] [MainThread]: Executing "git --help"
+[0m07:40:56.084127 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m07:40:56.085135 [debug] [MainThread]: STDERR: "b''"
+[0m07:40:56.087145 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m07:40:56.088145 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m07:40:56.089143 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m07:40:56.090142 [info ] [MainThread]: dbt looked for a profiles.yml file in .\profiles.yml, but did
+not find one. For more information on configuring your profile, consult the
+documentation:
+
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m07:40:56.091145 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\dbt_project.yml> not found
+
+[0m07:40:56.093652 [debug] [MainThread]: Command `dbt debug` failed at 07:40:56.093652 after 0.33 seconds
+[0m07:40:56.094663 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BC73147FD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BC731472D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BC72FEA050>]}
+[0m07:40:56.096176 [debug] [MainThread]: Flushing usage events
+[0m07:40:57.631642 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m07:42:38.357275 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000024FBE5CAB90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000024FBE5CA3D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000024FBE5C94D0>]}
+
+
+============================== 07:42:38.364816 | 37bc03ac-ba4d-4dc0-8659-10da76054f42 ==============================
+[0m07:42:38.364816 [info ] [MainThread]: Running with dbt=1.13.0-rc1
+[0m07:42:38.366816 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': '.', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'hints_enabled': 'True', 'invocation_command': 'dbt debug --profiles-dir .', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'D:\\Dawnloads\\My Own Project\\komoditas-data-pipeline\\dbt\\logs'}
+[0m07:42:38.367823 [debug] [MainThread]: Tracking: tracking
+[0m07:42:38.398561 [info ] [MainThread]: dbt version: 1.13.0-rc1
+[0m07:42:38.400154 [info ] [MainThread]: python version: 3.11.9
+[0m07:42:38.401167 [info ] [MainThread]: python path: D:\Dawnloads\My Own Project\komoditas-data-pipeline\venv\Scripts\python.exe
+[0m07:42:38.402168 [info ] [MainThread]: os info: Windows-10-10.0.26300-SP0
+[0m07:42:38.724715 [info ] [MainThread]: Using profiles dir at .
+[0m07:42:38.726764 [info ] [MainThread]: Using profiles.yml file at .\profiles.yml
+[0m07:42:38.727725 [info ] [MainThread]: Using dbt_project.yml file at D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\dbt_project.yml
+[0m07:42:38.729234 [info ] [MainThread]: adapter type: postgres
+[0m07:42:38.730240 [info ] [MainThread]: adapter version: 1.11.0
+[0m07:42:38.890592 [info ] [MainThread]: Configuration:
+[0m07:42:38.891592 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m07:42:38.892591 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m07:42:38.893593 [info ] [MainThread]: Required dependencies:
+[0m07:42:38.893593 [debug] [MainThread]: Executing "git --help"
+[0m07:42:39.010026 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m07:42:39.011032 [debug] [MainThread]: STDERR: "b''"
+[0m07:42:39.012036 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m07:42:39.014037 [info ] [MainThread]: Connection:
+[0m07:42:39.015038 [info ] [MainThread]:   host: 127.0.0.1
+[0m07:42:39.017036 [info ] [MainThread]:   port: 5433
+[0m07:42:39.018037 [info ] [MainThread]:   user: admin
+[0m07:42:39.019542 [info ] [MainThread]:   database: komoditas_db
+[0m07:42:39.020556 [info ] [MainThread]:   schema: public
+[0m07:42:39.021565 [info ] [MainThread]:   connect_timeout: 10
+[0m07:42:39.022568 [info ] [MainThread]:   role: None
+[0m07:42:39.023565 [info ] [MainThread]:   search_path: None
+[0m07:42:39.024564 [info ] [MainThread]:   keepalives_idle: 0
+[0m07:42:39.025564 [info ] [MainThread]:   sslmode: None
+[0m07:42:39.026565 [info ] [MainThread]:   sslcert: None
+[0m07:42:39.027565 [info ] [MainThread]:   sslkey: None
+[0m07:42:39.028961 [info ] [MainThread]:   sslrootcert: None
+[0m07:42:39.029468 [info ] [MainThread]:   application_name: dbt
+[0m07:42:39.030478 [info ] [MainThread]:   autocommit: False
+[0m07:42:39.031478 [info ] [MainThread]:   retries: 1
+[0m07:42:39.032478 [info ] [MainThread]: Registered adapter: postgres=1.11.0
+[0m07:42:39.759070 [debug] [MainThread]: Acquiring new postgres connection 'debug'
+[0m07:42:39.945240 [debug] [MainThread]: Using postgres connection "debug"
+[0m07:42:39.945765 [debug] [MainThread]: On debug: select 1 as id
+[0m07:42:39.946777 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m07:42:40.023041 [debug] [MainThread]: SQL status: SELECT 1 in 0.076 seconds
+[0m07:42:40.025239 [debug] [MainThread]: On debug: Close
+[0m07:42:40.026304 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m07:42:40.027423 [info ] [MainThread]: [32mAll checks passed![0m
+[0m07:42:40.029039 [debug] [MainThread]: Command `dbt debug` succeeded at 07:42:40.029039 after 1.87 seconds
+[0m07:42:40.030146 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m07:42:40.031259 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000024FBE9F2910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000024FBCEBBE10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000024FBE5A62D0>]}
+[0m07:42:40.032335 [debug] [MainThread]: Flushing usage events
+[0m07:42:41.578234 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m07:42:57.046256 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1E6CB6D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1E61A7D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1E744D10>]}
+
+
+============================== 07:42:57.052934 | a0021dec-f046-4e5f-a290-9936886dee18 ==============================
+[0m07:42:57.052934 [info ] [MainThread]: Running with dbt=1.13.0-rc1
+[0m07:42:57.053902 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': '.', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'hints_enabled': 'True', 'invocation_command': 'dbt run --profiles-dir .', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'D:\\Dawnloads\\My Own Project\\komoditas-data-pipeline\\dbt\\logs'}
+[0m07:42:57.055433 [debug] [MainThread]: Tracking: tracking
+[0m07:42:57.417627 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'a0021dec-f046-4e5f-a290-9936886dee18', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1E7E2BD0>]}
+[0m07:42:57.522304 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'a0021dec-f046-4e5f-a290-9936886dee18', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A19EEDA90>]}
+[0m07:42:57.524446 [info ] [MainThread]: Registered adapter: postgres=1.11.0
+[0m07:42:58.288513 [debug] [MainThread]: checksum: 5696ba3f02586bb06c7d1a32ad31aac20811f85a0409a69fc1704dbbb61487bc, vars: {}, profile: komoditas_dbt, target: dev, version: 1.13.0rc1
+[0m07:42:58.290154 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m07:42:58.292164 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'a0021dec-f046-4e5f-a290-9936886dee18', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1EA07E50>]}
+[0m07:43:00.600255 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'a0021dec-f046-4e5f-a290-9936886dee18', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1F086B10>]}
+[0m07:43:00.771802 [debug] [MainThread]: Wrote artifact WritableManifest to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\manifest.json
+[0m07:43:00.776803 [debug] [MainThread]: Wrote artifact SemanticManifest to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\semantic_manifest.json
+[0m07:43:00.820635 [debug] [MainThread]: Wrote artifact OsiDocument to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\osi_document.json
+[0m07:43:00.845898 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'a0021dec-f046-4e5f-a290-9936886dee18', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1F44B450>]}
+[0m07:43:00.846912 [info ] [MainThread]: Found 2 models, 3 data tests, 1 source, 477 macros
+[0m07:43:00.847910 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'a0021dec-f046-4e5f-a290-9936886dee18', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1E6D9750>]}
+[0m07:43:00.851444 [info ] [MainThread]: 
+[0m07:43:00.853439 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m07:43:00.854437 [info ] [MainThread]: 
+[0m07:43:00.855439 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m07:43:00.863188 [debug] [ThreadPool]: Acquiring new postgres connection 'list_komoditas_db'
+[0m07:43:01.149307 [debug] [ThreadPool]: Using postgres connection "list_komoditas_db"
+[0m07:43:01.150320 [debug] [ThreadPool]: On list_komoditas_db: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "connection_name": "list_komoditas_db"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m07:43:01.151318 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m07:43:01.198230 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.047 seconds
+[0m07:43:01.200887 [debug] [ThreadPool]: On list_komoditas_db: Close
+[0m07:43:01.203746 [debug] [ThreadPool]: Acquiring new postgres connection 'list_komoditas_db_public'
+[0m07:43:01.213307 [debug] [ThreadPool]: Using postgres connection "list_komoditas_db_public"
+[0m07:43:01.214309 [debug] [ThreadPool]: On list_komoditas_db_public: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "connection_name": "list_komoditas_db_public"} */
+select
+      'komoditas_db' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'komoditas_db' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'komoditas_db' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+    union all
+    select distinct
+     'komoditas_db' as database,
+     proname as name,
+     ns.nspname as schema,
+     'function' as type
+    from pg_proc
+     join pg_namespace as ns on pronamespace = ns.oid
+    where ns.nspname ilike 'public'
+  
+[0m07:43:01.215309 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m07:43:01.275350 [debug] [ThreadPool]: SQL status: SELECT 1 in 0.060 seconds
+[0m07:43:01.278063 [debug] [ThreadPool]: On list_komoditas_db_public: ROLLBACK
+[0m07:43:01.280832 [debug] [ThreadPool]: On list_komoditas_db_public: Close
+[0m07:43:01.288218 [debug] [MainThread]: Using postgres connection "master"
+[0m07:43:01.289286 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m07:43:01.290986 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m07:43:01.332010 [debug] [MainThread]: SQL status: SELECT 0 in 0.041 seconds
+[0m07:43:01.334152 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'a0021dec-f046-4e5f-a290-9936886dee18', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1EF780D0>]}
+[0m07:43:01.335242 [debug] [MainThread]: On master: ROLLBACK
+[0m07:43:01.337452 [debug] [MainThread]: On master: COMMIT
+[0m07:43:01.338581 [debug] [MainThread]: Using postgres connection "master"
+[0m07:43:01.339654 [debug] [MainThread]: On master: COMMIT
+[0m07:43:01.343131 [debug] [MainThread]: SQL status: COMMIT in 0.003 seconds
+[0m07:43:01.344180 [debug] [MainThread]: On master: Close
+[0m07:43:01.389156 [debug] [Thread-1 (]: Began running node model.komoditas_dbt.stg_harga_pasar
+[0m07:43:01.390220 [info ] [Thread-1 (]: 1 of 2 START sql view model public.stg_harga_pasar ............................. [RUN]
+[0m07:43:01.391838 [debug] [Thread-1 (]: Acquiring new postgres connection 'model.komoditas_dbt.stg_harga_pasar'
+[0m07:43:01.392900 [debug] [Thread-1 (]: Began compiling node model.komoditas_dbt.stg_harga_pasar
+[0m07:43:01.401697 [debug] [Thread-1 (]: Writing injected SQL for node "model.komoditas_dbt.stg_harga_pasar"
+[0m07:43:01.405698 [debug] [Thread-1 (]: Began executing node model.komoditas_dbt.stg_harga_pasar
+[0m07:43:01.453830 [debug] [Thread-1 (]: Writing runtime sql for node "model.komoditas_dbt.stg_harga_pasar"
+[0m07:43:01.462696 [debug] [Thread-1 (]: Using postgres connection "model.komoditas_dbt.stg_harga_pasar"
+[0m07:43:01.463697 [debug] [Thread-1 (]: On model.komoditas_dbt.stg_harga_pasar: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "node_id": "model.komoditas_dbt.stg_harga_pasar"} */
+
+  create view "komoditas_db"."public"."stg_harga_pasar__dbt_tmp"
+    
+    
+  as (
+    with raw_data as (
+    select * from "komoditas_db"."public"."bronze_harga_pasar"
+)
+
+select
+    asset_id,
+    price_idr::numeric as price_idr,
+    price_usd::numeric as price_usd,
+    round(change_24h_idr::numeric, 2) as change_24h_pct,
+    to_timestamp(last_updated_timestamp) as last_updated_at,
+    ingested_at::timestamp as ingested_at
+from raw_data
+  );
+[0m07:43:01.463697 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m07:43:01.493375 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.029 seconds
+[0m07:43:01.502139 [debug] [Thread-1 (]: Using postgres connection "model.komoditas_dbt.stg_harga_pasar"
+[0m07:43:01.503265 [debug] [Thread-1 (]: On model.komoditas_dbt.stg_harga_pasar: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "node_id": "model.komoditas_dbt.stg_harga_pasar"} */
+alter table "komoditas_db"."public"."stg_harga_pasar__dbt_tmp" rename to "stg_harga_pasar"
+[0m07:43:01.505977 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m07:43:01.528311 [debug] [Thread-1 (]: On model.komoditas_dbt.stg_harga_pasar: COMMIT
+[0m07:43:01.530349 [debug] [Thread-1 (]: Using postgres connection "model.komoditas_dbt.stg_harga_pasar"
+[0m07:43:01.530855 [debug] [Thread-1 (]: On model.komoditas_dbt.stg_harga_pasar: COMMIT
+[0m07:43:01.539315 [debug] [Thread-1 (]: SQL status: COMMIT in 0.008 seconds
+[0m07:43:01.548758 [debug] [Thread-1 (]: Applying DROP to: "komoditas_db"."public"."stg_harga_pasar__dbt_backup"
+[0m07:43:01.555621 [debug] [Thread-1 (]: Using postgres connection "model.komoditas_dbt.stg_harga_pasar"
+[0m07:43:01.557218 [debug] [Thread-1 (]: On model.komoditas_dbt.stg_harga_pasar: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "node_id": "model.komoditas_dbt.stg_harga_pasar"} */
+drop view if exists "komoditas_db"."public"."stg_harga_pasar__dbt_backup" cascade
+[0m07:43:01.560496 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.002 seconds
+[0m07:43:01.564060 [debug] [Thread-1 (]: On model.komoditas_dbt.stg_harga_pasar: Close
+[0m07:43:01.568007 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'a0021dec-f046-4e5f-a290-9936886dee18', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1F64D790>]}
+[0m07:43:01.569125 [info ] [Thread-1 (]: 1 of 2 OK created sql view model public.stg_harga_pasar ........................ [[32mCREATE VIEW[0m in 0.17s]
+[0m07:43:01.570219 [debug] [Thread-1 (]: Finished running node model.komoditas_dbt.stg_harga_pasar
+[0m07:43:01.572020 [debug] [Thread-1 (]: Began running node model.komoditas_dbt.fct_harga_harian
+[0m07:43:01.572890 [info ] [Thread-1 (]: 2 of 2 START sql table model public.fct_harga_harian ........................... [RUN]
+[0m07:43:01.574609 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.komoditas_dbt.stg_harga_pasar, now model.komoditas_dbt.fct_harga_harian)
+[0m07:43:01.575155 [debug] [Thread-1 (]: Began compiling node model.komoditas_dbt.fct_harga_harian
+[0m07:43:01.578448 [debug] [Thread-1 (]: Writing injected SQL for node "model.komoditas_dbt.fct_harga_harian"
+[0m07:43:01.583719 [debug] [Thread-1 (]: Began executing node model.komoditas_dbt.fct_harga_harian
+[0m07:43:01.612606 [debug] [Thread-1 (]: Writing runtime sql for node "model.komoditas_dbt.fct_harga_harian"
+[0m07:43:01.615713 [debug] [Thread-1 (]: Using postgres connection "model.komoditas_dbt.fct_harga_harian"
+[0m07:43:01.616728 [debug] [Thread-1 (]: On model.komoditas_dbt.fct_harga_harian: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "node_id": "model.komoditas_dbt.fct_harga_harian"} */
+
+  
+    
+
+  create  table "komoditas_db"."public"."fct_harga_harian__dbt_tmp"
+  
+  
+    as
+  
+  (
+    with silver_data as (
+    select * from "komoditas_db"."public"."stg_harga_pasar"
+)
+
+select
+    asset_id,
+    date(last_updated_at) as date_key,
+    round(avg(price_idr), 2) as avg_price_idr,
+    round(avg(price_usd), 2) as avg_price_usd,
+    max(change_24h_pct) as max_change_24h_pct,
+    count(*) as total_datapoints
+from silver_data
+group by 1, 2
+  );
+  
+[0m07:43:01.617728 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m07:43:01.668126 [debug] [Thread-1 (]: SQL status: SELECT 5 in 0.050 seconds
+[0m07:43:01.679665 [debug] [Thread-1 (]: Using postgres connection "model.komoditas_dbt.fct_harga_harian"
+[0m07:43:01.681191 [debug] [Thread-1 (]: On model.komoditas_dbt.fct_harga_harian: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "node_id": "model.komoditas_dbt.fct_harga_harian"} */
+alter table "komoditas_db"."public"."fct_harga_harian__dbt_tmp" rename to "fct_harga_harian"
+[0m07:43:01.684600 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m07:43:01.687512 [debug] [Thread-1 (]: On model.komoditas_dbt.fct_harga_harian: COMMIT
+[0m07:43:01.688571 [debug] [Thread-1 (]: Using postgres connection "model.komoditas_dbt.fct_harga_harian"
+[0m07:43:01.689671 [debug] [Thread-1 (]: On model.komoditas_dbt.fct_harga_harian: COMMIT
+[0m07:43:01.693465 [debug] [Thread-1 (]: SQL status: COMMIT in 0.003 seconds
+[0m07:43:01.696117 [debug] [Thread-1 (]: Applying DROP to: "komoditas_db"."public"."fct_harga_harian__dbt_backup"
+[0m07:43:01.700256 [debug] [Thread-1 (]: Using postgres connection "model.komoditas_dbt.fct_harga_harian"
+[0m07:43:01.701252 [debug] [Thread-1 (]: On model.komoditas_dbt.fct_harga_harian: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "node_id": "model.komoditas_dbt.fct_harga_harian"} */
+drop table if exists "komoditas_db"."public"."fct_harga_harian__dbt_backup" cascade
+[0m07:43:01.703460 [debug] [Thread-1 (]: SQL status: DROP TABLE in 0.002 seconds
+[0m07:43:01.705532 [debug] [Thread-1 (]: On model.komoditas_dbt.fct_harga_harian: Close
+[0m07:43:01.706568 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'a0021dec-f046-4e5f-a290-9936886dee18', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1E75BF90>]}
+[0m07:43:01.708206 [info ] [Thread-1 (]: 2 of 2 OK created sql table model public.fct_harga_harian ...................... [[32mSELECT 5[0m in 0.13s]
+[0m07:43:01.709282 [debug] [Thread-1 (]: Finished running node model.komoditas_dbt.fct_harga_harian
+[0m07:43:01.711978 [debug] [MainThread]: On master: COMMIT
+[0m07:43:01.712512 [debug] [MainThread]: Using postgres connection "master"
+[0m07:43:01.713601 [debug] [MainThread]: On master: COMMIT
+[0m07:43:01.715579 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:43:01.736600 [debug] [MainThread]: SQL status: COMMIT in 0.021 seconds
+[0m07:43:01.737677 [debug] [MainThread]: On master: Close
+[0m07:43:01.739354 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m07:43:01.740451 [debug] [MainThread]: Connection 'list_komoditas_db' was properly closed.
+[0m07:43:01.741007 [debug] [MainThread]: Connection 'list_komoditas_db_public' was properly closed.
+[0m07:43:01.742116 [debug] [MainThread]: Connection 'model.komoditas_dbt.fct_harga_harian' was properly closed.
+[0m07:43:01.743207 [info ] [MainThread]: 
+[0m07:43:01.744315 [info ] [MainThread]: Finished running 1 table model, 1 view model in 0 hours 0 minutes and 0.89 seconds (0.89s).
+[0m07:43:01.746523 [debug] [MainThread]: Command end result
+[0m07:43:01.796312 [debug] [MainThread]: Wrote artifact WritableManifest to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\manifest.json
+[0m07:43:01.801845 [debug] [MainThread]: Wrote artifact SemanticManifest to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\semantic_manifest.json
+[0m07:43:01.805836 [debug] [MainThread]: Wrote artifact OsiDocument to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\osi_document.json
+[0m07:43:01.825954 [debug] [MainThread]: Wrote artifact RunExecutionResult to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\run_results.json
+[0m07:43:01.826495 [info ] [MainThread]: 
+[0m07:43:01.828132 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m07:43:01.829247 [info ] [MainThread]: 
+[0m07:43:01.830344 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=2
+[0m07:43:01.832542 [debug] [MainThread]: Command `dbt run` succeeded at 07:43:01.831987 after 4.99 seconds
+[0m07:43:01.833294 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1E7C3750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1E798510>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027A1E6B6290>]}
+[0m07:43:01.834353 [debug] [MainThread]: Flushing usage events
+[0m07:43:03.383337 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m07:43:21.554494 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC7719E90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC766AD10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC7738390>]}
+
+
+============================== 07:43:21.562385 | 72f84ca5-38ea-4c36-af84-4cb1d083f18d ==============================
+[0m07:43:21.562385 [info ] [MainThread]: Running with dbt=1.13.0-rc1
+[0m07:43:21.563401 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'static_parser': 'True', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': '.', 'use_colors': 'True', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'invocation_command': 'dbt test --profiles-dir .', 'log_path': 'D:\\Dawnloads\\My Own Project\\komoditas-data-pipeline\\dbt\\logs'}
+[0m07:43:21.564399 [debug] [MainThread]: Tracking: tracking
+[0m07:43:21.885309 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '72f84ca5-38ea-4c36-af84-4cb1d083f18d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC78FC810>]}
+[0m07:43:21.989947 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '72f84ca5-38ea-4c36-af84-4cb1d083f18d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC2E50C50>]}
+[0m07:43:21.992786 [info ] [MainThread]: Registered adapter: postgres=1.11.0
+[0m07:43:22.850517 [debug] [MainThread]: checksum: 5696ba3f02586bb06c7d1a32ad31aac20811f85a0409a69fc1704dbbb61487bc, vars: {}, profile: komoditas_dbt, target: dev, version: 1.13.0rc1
+[0m07:43:23.187538 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m07:43:23.188061 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m07:43:23.189076 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m07:43:23.206195 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '72f84ca5-38ea-4c36-af84-4cb1d083f18d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC7780050>]}
+[0m07:43:23.446662 [debug] [MainThread]: Wrote artifact WritableManifest to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\manifest.json
+[0m07:43:23.455264 [debug] [MainThread]: Wrote artifact SemanticManifest to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\semantic_manifest.json
+[0m07:43:23.523790 [debug] [MainThread]: Wrote artifact OsiDocument to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\osi_document.json
+[0m07:43:23.593070 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '72f84ca5-38ea-4c36-af84-4cb1d083f18d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC7CF6A90>]}
+[0m07:43:23.594067 [info ] [MainThread]: Found 2 models, 3 data tests, 1 source, 477 macros
+[0m07:43:23.596109 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '72f84ca5-38ea-4c36-af84-4cb1d083f18d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC7E8C790>]}
+[0m07:43:23.600240 [info ] [MainThread]: 
+[0m07:43:23.602272 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m07:43:23.603783 [info ] [MainThread]: 
+[0m07:43:23.604792 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m07:43:23.613893 [debug] [ThreadPool]: Acquiring new postgres connection 'list_komoditas_db_public'
+[0m07:43:23.825133 [debug] [ThreadPool]: Using postgres connection "list_komoditas_db_public"
+[0m07:43:23.826110 [debug] [ThreadPool]: On list_komoditas_db_public: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "connection_name": "list_komoditas_db_public"} */
+select
+      'komoditas_db' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'komoditas_db' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'komoditas_db' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+    union all
+    select distinct
+     'komoditas_db' as database,
+     proname as name,
+     ns.nspname as schema,
+     'function' as type
+    from pg_proc
+     join pg_namespace as ns on pronamespace = ns.oid
+    where ns.nspname ilike 'public'
+  
+[0m07:43:23.827117 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m07:43:23.866745 [debug] [ThreadPool]: SQL status: SELECT 3 in 0.040 seconds
+[0m07:43:23.868967 [debug] [ThreadPool]: On list_komoditas_db_public: ROLLBACK
+[0m07:43:23.872107 [debug] [ThreadPool]: On list_komoditas_db_public: Close
+[0m07:43:23.879706 [debug] [MainThread]: Using postgres connection "master"
+[0m07:43:23.880776 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m07:43:23.881856 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m07:43:23.910017 [debug] [MainThread]: SQL status: SELECT 1 in 0.028 seconds
+[0m07:43:23.912695 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '72f84ca5-38ea-4c36-af84-4cb1d083f18d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC7CF4090>]}
+[0m07:43:23.913791 [debug] [MainThread]: On master: ROLLBACK
+[0m07:43:23.916558 [debug] [MainThread]: On master: COMMIT
+[0m07:43:23.917098 [debug] [MainThread]: Using postgres connection "master"
+[0m07:43:23.918196 [debug] [MainThread]: On master: COMMIT
+[0m07:43:23.924674 [debug] [MainThread]: SQL status: COMMIT in 0.005 seconds
+[0m07:43:23.925751 [debug] [MainThread]: On master: Close
+[0m07:43:23.933352 [debug] [Thread-1 (]: Began running node test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc
+[0m07:43:23.934466 [info ] [Thread-1 (]: 1 of 3 START test not_null_fct_harga_harian_asset_id ........................... [RUN]
+[0m07:43:23.936120 [debug] [Thread-1 (]: Acquiring new postgres connection 'test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc'
+[0m07:43:23.937217 [debug] [Thread-1 (]: Began compiling node test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc
+[0m07:43:23.964358 [debug] [Thread-1 (]: Writing injected SQL for node "test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc"
+[0m07:43:23.967327 [debug] [Thread-1 (]: Began executing node test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc
+[0m07:43:23.995455 [debug] [Thread-1 (]: Writing runtime sql for node "test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc"
+[0m07:43:24.000756 [debug] [Thread-1 (]: Using postgres connection "test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc"
+[0m07:43:24.003321 [debug] [Thread-1 (]: On test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "node_id": "test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select asset_id
+from "komoditas_db"."public"."fct_harga_harian"
+where asset_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m07:43:24.004320 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m07:43:24.026038 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.021 seconds
+[0m07:43:24.034437 [debug] [Thread-1 (]: On test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc: ROLLBACK
+[0m07:43:24.037160 [debug] [Thread-1 (]: On test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc: Close
+[0m07:43:24.039324 [info ] [Thread-1 (]: 1 of 3 PASS not_null_fct_harga_harian_asset_id ................................. [[32mPASS[0m in 0.10s]
+[0m07:43:24.041602 [debug] [Thread-1 (]: Finished running node test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc
+[0m07:43:24.042723 [debug] [Thread-1 (]: Began running node test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077
+[0m07:43:24.043849 [info ] [Thread-1 (]: 2 of 3 START test not_null_fct_harga_harian_avg_price_idr ...................... [RUN]
+[0m07:43:24.046055 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.komoditas_dbt.not_null_fct_harga_harian_asset_id.5eb79b8ebc, now test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077)
+[0m07:43:24.047215 [debug] [Thread-1 (]: Began compiling node test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077
+[0m07:43:24.059168 [debug] [Thread-1 (]: Writing injected SQL for node "test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077"
+[0m07:43:24.061544 [debug] [Thread-1 (]: Began executing node test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077
+[0m07:43:24.064235 [debug] [Thread-1 (]: Writing runtime sql for node "test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077"
+[0m07:43:24.067244 [debug] [Thread-1 (]: Using postgres connection "test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077"
+[0m07:43:24.068883 [debug] [Thread-1 (]: On test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "node_id": "test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select avg_price_idr
+from "komoditas_db"."public"."fct_harga_harian"
+where avg_price_idr is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m07:43:24.069913 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m07:43:24.092436 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.022 seconds
+[0m07:43:24.095125 [debug] [Thread-1 (]: On test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077: ROLLBACK
+[0m07:43:24.097303 [debug] [Thread-1 (]: On test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077: Close
+[0m07:43:24.098914 [info ] [Thread-1 (]: 2 of 3 PASS not_null_fct_harga_harian_avg_price_idr ............................ [[32mPASS[0m in 0.05s]
+[0m07:43:24.100543 [debug] [Thread-1 (]: Finished running node test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077
+[0m07:43:24.102304 [debug] [Thread-1 (]: Began running node test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774
+[0m07:43:24.103435 [info ] [Thread-1 (]: 3 of 3 START test not_null_fct_harga_harian_date_key ........................... [RUN]
+[0m07:43:24.104522 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.komoditas_dbt.not_null_fct_harga_harian_avg_price_idr.6065624077, now test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774)
+[0m07:43:24.105605 [debug] [Thread-1 (]: Began compiling node test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774
+[0m07:43:24.115421 [debug] [Thread-1 (]: Writing injected SQL for node "test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774"
+[0m07:43:24.117396 [debug] [Thread-1 (]: Began executing node test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774
+[0m07:43:24.120921 [debug] [Thread-1 (]: Writing runtime sql for node "test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774"
+[0m07:43:24.127321 [debug] [Thread-1 (]: Using postgres connection "test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774"
+[0m07:43:24.128322 [debug] [Thread-1 (]: On test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774: /* {"app": "dbt", "dbt_version": "1.13.0rc1", "profile_name": "komoditas_dbt", "target_name": "dev", "node_id": "test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select date_key
+from "komoditas_db"."public"."fct_harga_harian"
+where date_key is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m07:43:24.129351 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m07:43:24.170643 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.041 seconds
+[0m07:43:24.173397 [debug] [Thread-1 (]: On test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774: ROLLBACK
+[0m07:43:24.176182 [debug] [Thread-1 (]: On test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774: Close
+[0m07:43:24.177297 [info ] [Thread-1 (]: 3 of 3 PASS not_null_fct_harga_harian_date_key ................................. [[32mPASS[0m in 0.07s]
+[0m07:43:24.179491 [debug] [Thread-1 (]: Finished running node test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774
+[0m07:43:24.182231 [debug] [MainThread]: On master: COMMIT
+[0m07:43:24.183317 [debug] [MainThread]: Using postgres connection "master"
+[0m07:43:24.184412 [debug] [MainThread]: On master: COMMIT
+[0m07:43:24.185533 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m07:43:24.206317 [debug] [MainThread]: SQL status: COMMIT in 0.021 seconds
+[0m07:43:24.207962 [debug] [MainThread]: On master: Close
+[0m07:43:24.209043 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m07:43:24.210118 [debug] [MainThread]: Connection 'list_komoditas_db_public' was properly closed.
+[0m07:43:24.210671 [debug] [MainThread]: Connection 'test.komoditas_dbt.not_null_fct_harga_harian_date_key.1655357774' was properly closed.
+[0m07:43:24.211766 [info ] [MainThread]: 
+[0m07:43:24.212887 [info ] [MainThread]: Finished running 3 data tests in 0 hours 0 minutes and 0.61 seconds (0.61s).
+[0m07:43:24.215709 [debug] [MainThread]: Command end result
+[0m07:43:24.279971 [debug] [MainThread]: Wrote artifact WritableManifest to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\manifest.json
+[0m07:43:24.286503 [debug] [MainThread]: Wrote artifact SemanticManifest to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\semantic_manifest.json
+[0m07:43:24.294035 [debug] [MainThread]: Wrote artifact OsiDocument to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\osi_document.json
+[0m07:43:24.313090 [debug] [MainThread]: Wrote artifact RunExecutionResult to D:\Dawnloads\My Own Project\komoditas-data-pipeline\dbt\target\run_results.json
+[0m07:43:24.314088 [info ] [MainThread]: 
+[0m07:43:24.316091 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m07:43:24.317089 [info ] [MainThread]: 
+[0m07:43:24.318096 [info ] [MainThread]: Done. PASS=3 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=3
+[0m07:43:24.321238 [debug] [MainThread]: Command `dbt test` succeeded at 07:43:24.321238 after 2.96 seconds
+[0m07:43:24.322256 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC7656350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC766AAD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FFC76698D0>]}
+[0m07:43:24.323256 [debug] [MainThread]: Flushing usage events
+[0m07:43:26.069328 [debug] [MainThread]: An error was encountered while trying to flush usage events

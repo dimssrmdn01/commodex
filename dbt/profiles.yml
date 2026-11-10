@@ -1,0 +1,12 @@
+komoditas_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: 127.0.0.1
+      user: admin
+      pass: adminpassword
+      port: 5433
+      dbname: komoditas_db
+      schema: public
+      threads: 1

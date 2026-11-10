@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: komoditas_db
+    schema: public
+    tables:
+      - name: bronze_harga_pasar

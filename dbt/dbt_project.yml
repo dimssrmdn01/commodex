@@ -1,0 +1,18 @@
+name: 'komoditas_dbt'
+version: '1.0.0'
+config-version: 2
+
+profile: 'komoditas_dbt'
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  komoditas_dbt:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
