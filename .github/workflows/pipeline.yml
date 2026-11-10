@@ -1,0 +1,50 @@
+name: Commodex Data Pipeline Engine
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  #
+  workflow_dispatch:      
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: adminpassword
+          POSTGRES_DB: komoditas_db
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install dbt-postgres
+
+      - name: Run Ingestion Pipeline (Bronze Layer)
+        run: |
+          python src/ingest.py
+
+      - name: Run dbt Transformations & Data Tests (Silver & Gold Layer)
+        run: |
+          cd dbt
+          dbt run --profiles-dir .
+          dbt test --profiles-dir .
