@@ -1,7 +1,7 @@
 import os
 import requests
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy import create_engine
 
 #konfigurasi
@@ -38,7 +38,7 @@ def fetch_api_data():
             "price_usd": val.get("usd"),
             "change_24h_idr": val.get("idr_24h_change"),
             "last_updated_timestamp": val.get("last_updated_at"),
-            "ingested_at": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+            "ingested_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
         })
         
     return pd.DataFrame(records)
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     try:
         df_data = fetch_api_data()
         load_to_bronze(df_data)
-        print("Pipeline Ingestion Hari 2 BERHASIL!")
+        print("Ingestion selesai.")
     except Exception as e:
         print(f"Terjadi error: {e}")
         raise
