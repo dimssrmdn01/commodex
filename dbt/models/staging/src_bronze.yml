@@ -11,11 +11,10 @@ models:
     description: "Silver Layer: data bersih hasil casting tipe data dan deduplikasi dari Bronze"
     columns:
       - name: asset_id
-        tests:
+        data_tests:
           - not_null
           - accepted_values:
-              arguments:
-                values: ['bitcoin', 'ethereum', 'tether', 'solana', 'binancecoin']
+              values: ['bitcoin', 'ethereum', 'tether', 'solana', 'binancecoin']
       - name: last_updated_at
-        tests:
+        data_tests:
           - not_null
