@@ -58,3 +58,4 @@ if __name__ == "__main__":
         print("Pipeline Ingestion Hari 2 BERHASIL!")
     except Exception as e:
         print(f"Terjadi error: {e}")
+        raise
