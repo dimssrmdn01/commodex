@@ -1,10 +1,10 @@
 
-  create view "komoditas_db"."public"."stg_harga_pasar__dbt_tmp"
+  create view "neondb"."public"."stg_harga_pasar__dbt_tmp"
     
     
   as (
     with raw_data as (
-    select * from "komoditas_db"."public"."bronze_harga_pasar"
+    select * from "neondb"."public"."bronze_harga_pasar"
 ),
 
 deduped as (

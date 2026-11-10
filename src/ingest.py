@@ -2,16 +2,29 @@ import os
 import requests
 import pandas as pd
 from datetime import datetime, timezone
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
+from sqlalchemy.engine import URL
 
-#konfigurasi
-DB_USER = "admin"
-DB_PASSWORD = "adminpassword"
-DB_HOST = "127.0.0.1"
-DB_PORT = "5433"
-DB_NAME = "komoditas_db"
+load_dotenv()  # baca file .env (kalau ada) untuk pengujian lokal
 
-DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+# konfigurasi
+DB_USER = os.getenv("DB_USER", "admin")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "adminpassword")
+DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
+DB_PORT = os.getenv("DB_PORT", "5433")
+DB_NAME = os.getenv("DB_NAME", "komoditas_db")
+DB_SSLMODE = os.getenv("DB_SSLMODE", "prefer")
+
+DATABASE_URL = URL.create(
+    drivername="postgresql+psycopg2",
+    username=DB_USER,
+    password=DB_PASSWORD,
+    host=DB_HOST,
+    port=int(DB_PORT),
+    database=DB_NAME,
+    query={"sslmode": DB_SSLMODE},
+)
 
 def fetch_api_data():
     """Mengambil data real-time komoditas/kripto dari API publik"""

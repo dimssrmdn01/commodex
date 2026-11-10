@@ -17,7 +17,7 @@ with validation_errors as (
 
     select
         asset_id, date_key
-    from "komoditas_db"."public"."fct_harga_harian"
+    from "neondb"."public"."fct_harga_harian"
     group by asset_id, date_key
     having count(*) > 1
 

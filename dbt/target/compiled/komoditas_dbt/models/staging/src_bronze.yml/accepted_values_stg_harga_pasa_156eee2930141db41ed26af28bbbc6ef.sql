@@ -8,7 +8,7 @@ with all_values as (
         asset_id as value_field,
         count(*) as n_records
 
-    from "komoditas_db"."public"."stg_harga_pasar"
+    from "neondb"."public"."stg_harga_pasar"
     group by asset_id
 
 )

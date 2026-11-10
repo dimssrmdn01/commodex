@@ -1,5 +1,5 @@
 with raw_data as (
-    select * from "komoditas_db"."public"."bronze_harga_pasar"
+    select * from "neondb"."public"."bronze_harga_pasar"
 ),
 
 deduped as (

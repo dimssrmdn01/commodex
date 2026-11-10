@@ -3,10 +3,11 @@ komoditas_dbt:
   outputs:
     dev:
       type: postgres
-      host: 127.0.0.1
-      user: admin
-      pass: adminpassword
-      port: 5433
-      dbname: komoditas_db
+      host: "{{ env_var('DB_HOST', '127.0.0.1') }}"
+      port: "{{ env_var('DB_PORT', '5433') | as_number }}"
+      user: "{{ env_var('DB_USER', 'admin') }}"
+      password: "{{ env_var('DB_PASSWORD', 'adminpassword') }}"
+      dbname: "{{ env_var('DB_NAME', 'komoditas_db') }}"
       schema: public
+      sslmode: "{{ env_var('DB_SSLMODE', 'prefer') }}"
       threads: 1

@@ -1,5 +1,5 @@
 with silver_data as (
-    select * from "komoditas_db"."public"."stg_harga_pasar"
+    select * from "neondb"."public"."stg_harga_pasar"
 )
 
 select

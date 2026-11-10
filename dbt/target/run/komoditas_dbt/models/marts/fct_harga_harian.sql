@@ -2,14 +2,14 @@
   
     
 
-  create  table "komoditas_db"."public"."fct_harga_harian__dbt_tmp"
+  create  table "neondb"."public"."fct_harga_harian__dbt_tmp"
   
   
     as
   
   (
     with silver_data as (
-    select * from "komoditas_db"."public"."stg_harga_pasar"
+    select * from "neondb"."public"."stg_harga_pasar"
 )
 
 select
