@@ -2,7 +2,20 @@ version: 2
 
 sources:
   - name: bronze
-    database: komoditas_db
     schema: public
     tables:
       - name: bronze_harga_pasar
+
+models:
+  - name: stg_harga_pasar
+    description: "Silver Layer: data bersih hasil casting tipe data dan deduplikasi dari Bronze"
+    columns:
+      - name: asset_id
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['bitcoin', 'ethereum', 'tether', 'solana', 'binancecoin']
+      - name: last_updated_at
+        tests:
+          - not_null

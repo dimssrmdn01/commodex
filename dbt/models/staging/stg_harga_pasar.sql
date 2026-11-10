@@ -1,12 +1,12 @@
 with raw_data as (
     select * from {{ source('bronze', 'bronze_harga_pasar') }}
-)
+),
 
 deduped as (
     select
         *,
         row_number() over (
-            patition by asset_id, last_updated_timestamp
+            partition by asset_id, last_updated_timestamp
             order by ingested_at desc
         ) as rn
     from raw_data

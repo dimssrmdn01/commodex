@@ -1,0 +1,20 @@
+
+
+
+
+
+
+with validation_errors as (
+
+    select
+        asset_id, date_key
+    from "komoditas_db"."public"."fct_harga_harian"
+    group by asset_id, date_key
+    having count(*) > 1
+
+)
+
+select *
+from validation_errors
+
+
