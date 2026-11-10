@@ -7,21 +7,23 @@
 
 [![Pipeline](https://img.shields.io/github/actions/workflow/status/dimssrmdn01/commodex/pipeline.yml?style=for-the-badge&label=Pipeline&logo=githubactions&logoColor=2DD4BF&labelColor=0f172a)](https://github.com/dimssrmdn01/commodex/actions/workflows/pipeline.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-0f172a?style=for-the-badge&logo=python&logoColor=2DD4BF)
-![dbt](https://img.shields.io/badge/dbt-1.12-0f172a?style=for-the-badge&logo=dbt&logoColor=FF694A)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-0f172a?style=for-the-badge&logo=postgresql&logoColor=60A5FA)
+![dbt](https://img.shields.io/badge/dbt-1.8-0f172a?style=for-the-badge&logo=dbt&logoColor=FF694A)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-0f172a?style=for-the-badge&logo=postgresql&logoColor=60A5FA)
 ![License](https://img.shields.io/badge/License-MIT-0f172a?style=for-the-badge&logoColor=2DD4BF)
 
 </div>
 
 ## About The Project
 
-**Commodex** adalah pipeline *end-to-end analytics engineering* yang menerapkan **Medallion Architecture** (Bronze → Silver → Gold). Data harga aset diambil dari [CoinGecko API](https://www.coingecko.com/en/api), dibersihkan dan dimodelkan dengan dbt, lalu divalidasi dengan data quality test yang berjalan otomatis lewat GitHub Actions.
+**Commodex** adalah pipeline *end-to-end analytics engineering* yang menerapkan **Medallion Architecture** (Bronze → Silver → Gold). Data harga aset diambil dari [CoinGecko API](https://www.coingecko.com/en/api), dibersihkan dan dimodelkan dengan dbt, lalu divalidasi dengan data quality test yang berjalan otomatis lewat GitHub Actions dan disimpan di PostgreSQL cloud (Neon).
 
 **Key highlights:**
 - **Layered by design.** Bronze menyimpan data mentah apa adanya, Silver membersihkan dan mendeduplikasi, Gold menyajikan agregasi siap analisis.
 - **Tested, not assumed.** 7 tes dbt (`not_null`, `accepted_values`, `unique_combination_of_columns`) dijalankan di setiap eksekusi.
+- **Persistent history.** Setiap run harian menambah snapshot baru ke Neon, sehingga histori harga terakumulasi.
 - **Fail-fast CI.** Jika ingestion gagal, pipeline langsung berhenti dan workflow berstatus merah.
-- **Reproducible.** Satu `docker compose up` untuk database lokal, versi dependency dikunci.
+- **Secure by default.** Kredensial database dibaca dari GitHub Secrets dan environment variable, tidak pernah di-commit.
+- **Reproducible.** Satu `docker compose up` untuk database lokal, versi dbt dikunci.
 
 **Aset yang dilacak:** Bitcoin, Ethereum, Tether, Solana, BNB (harga IDR dan USD).
 
@@ -33,7 +35,10 @@ flowchart TD
     B -->|dbt staging| C[(Silver<br/>stg_harga_pasar)]
     C -->|dbt mart| D[(Gold<br/>fct_harga_harian)]
     D --> E[dbt tests]
-    F[GitHub Actions<br/>push · PR · cron harian] -.->|orchestrates| A
+    F[GitHub Actions<br/>push · cron harian · manual] -.->|orchestrates| A
+    G[(Neon PostgreSQL)] --- B
+    G --- C
+    G --- D
 ````
 
 ## Data Layers
@@ -58,16 +63,16 @@ flowchart TD
 | Layer | Tools & Technologies |
 | :--- | :--- |
 | Ingestion | Python 3.11, requests, pandas, SQLAlchemy |
-| Storage | PostgreSQL 15 (Docker Compose lokal, service container di CI) |
-| Transformation | dbt-core 1.12, dbt-postgres 1.11, dbt_utils |
-| CI/CD | GitHub Actions (push, pull request, cron harian 00:00 UTC, manual) |
+| Storage | PostgreSQL: Neon (CI/produksi), Docker Compose (lokal) |
+| Transformation | dbt-core 1.8.0, dbt-postgres 1.8.0, dbt_utils |
+| CI/CD | GitHub Actions (push ke `main`, cron harian 00:00 UTC, manual) |
 
 ## Project Structure
 
 ````text
 commodex/
 ├── .github/workflows/pipeline.yml   # CI/CD
-├── dbt/                             # models, tests, packages.yml
+├── dbt/                             # models, tests, profiles.yml, packages.yml
 ├── src/ingest.py                    # ingestion ke Bronze
 ├── docker-compose.yml               # PostgreSQL lokal
 ├── requirements.txt
@@ -102,7 +107,20 @@ dbt run --profiles-dir .
 dbt test --profiles-dir .
 ````
 
-Kredensial database bisa diatur lewat environment variable `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_PORT`, `DB_NAME` (default untuk development lokal).
+## Configuration
+
+Koneksi database dibaca dari environment variable berikut. Tanpa konfigurasi, default-nya mengarah ke PostgreSQL lokal dari Docker Compose.
+
+| Variable | Keterangan |
+| :--- | :--- |
+| `DB_HOST` | Host database |
+| `DB_PORT` | Port database |
+| `DB_USER` | Username |
+| `DB_PASSWORD` | Password |
+| `DB_NAME` | Nama database |
+| `DB_SSLMODE` | Mode SSL (`require` untuk Neon) |
+
+Untuk lokal, simpan nilai di file `.env` (sudah ada di `.gitignore`). Untuk CI, daftarkan keenam variable tersebut sebagai **Repository secrets** di *Settings → Secrets and variables → Actions*.
 
 ## Example Query
 
@@ -114,13 +132,14 @@ ORDER BY date_key DESC, asset_id;
 
 ## Known Limitations
 
-- Database di CI bersifat sementara, sehingga histori harga tidak tersimpan antar-run.
 - Ingestion berupa snapshot per eksekusi (batch), bukan streaming.
 - Sumber data saat ini hanya aset kripto.
+- Workflow tidak berjalan pada pull request, supaya PR tidak menulis ke database produksi.
+- Bronze bersifat append-only, sehingga run ulang pada hari yang sama menambah baris snapshot baru.
 
 ## Roadmap
 
-- [ ] Database cloud persisten (Neon/Supabase) + GitHub Secrets untuk akumulasi histori
+- [x] Database cloud persisten (Neon) + GitHub Secrets untuk akumulasi histori
 - [ ] Tambah sumber komoditas riil (emas, minyak)
 - [ ] Dashboard (Streamlit) di atas layer Gold
 - [ ] dbt docs + lineage graph via GitHub Pages
