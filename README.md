@@ -1,4 +1,5 @@
 <div align="center">
+<img src="assets/banner.svg" alt="Commodex Banner" width="100%">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=26&pause=1000&color=2DD4BF&center=true&vCenter=true&width=700&lines=COMMODEX;Medallion+Data+Pipeline;Bronze+%E2%86%92+Silver+%E2%86%92+Gold;Python+%C2%B7+PostgreSQL+%C2%B7+dbt+%C2%B7+GitHub+Actions" alt="Typing SVG" />
 </div>
 
