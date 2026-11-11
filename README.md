@@ -172,4 +172,19 @@ ORDER BY date_key DESC, asset_id;
 - Ingestion berupa snapshot per eksekusi (batch), bukan streaming.
 - Sumber data saat ini hanya aset kripto.
 - Setiap push ke `main` juga menjalankan ingestion, sehingga Bronze menerima snapshot tambahan di luar jadwal harian. Deduplikasi di Silver menjaga data tetap bersih.
-- Bronze
+- Bronze bersifat append-only, sehingga run ulang pada hari yang sama menambah baris snapshot baru.
+
+## Roadmap
+
+- [x] Database cloud persisten (Neon) + GitHub Secrets untuk akumulasi histori
+- [ ] Tambah sumber komoditas riil (emas, minyak)
+- [ ] Dashboard (Streamlit) di atas layer Gold
+- [ ] dbt docs + lineage graph via GitHub Pages
+
+## Author
+
+Built by **Dimas Arya Ramadhan** - Undergraduate Data Science student at ITERA.
+
+## License
+
+MIT License.
