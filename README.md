@@ -79,6 +79,10 @@ Workflow `.github/workflows/pipeline.yml` berjalan pada tiga kondisi: push ke `m
 
 Pipeline menulis ke database Neon, dengan kredensial dari GitHub Secrets. Jika ingestion gagal, step berikutnya tidak dijalankan dan workflow berstatus merah. Workflow sengaja tidak berjalan pada pull request, supaya PR tidak menulis ke database produksi.
 
+<div align="center">
+     <img src="assets/ci-success.png" alt="GitHub Actions run berhasil" width="85%">
+</div>
+
 ## Project Structure
 
 ````text
