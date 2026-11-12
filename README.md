@@ -184,7 +184,3 @@ ORDER BY date_key DESC, asset_id;
 ## Author
 
 Built by **Dimas Arya Ramadhan** - Undergraduate Data Science student at ITERA.
-
-## License
-
-MIT License.
