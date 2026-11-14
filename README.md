@@ -182,7 +182,7 @@ ORDER BY date_key DESC, asset_id;
 
 - [x] Database cloud persisten (Neon) + GitHub Secrets untuk akumulasi histori
 - [ ] Tambah sumber komoditas riil (emas, minyak)
-- [ ] Dashboard (Streamlit) di atas layer Gold
+- [x] Dashboard (Streamlit) di atas layer Gold
 - [ ] dbt docs + lineage graph via GitHub Pages
 
 ## Author
