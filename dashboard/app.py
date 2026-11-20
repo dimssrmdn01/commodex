@@ -118,6 +118,24 @@ if asset_df.empty:
     st.stop()
 latest = asset_df.iloc[-1]
 
+# ---------- ticker ----------
+items = []
+for key, name in ASSET_LABELS.items():
+    sub = prices[prices["asset_id"] == key]
+    if sub.empty:
+        continue
+    last = sub.iloc[-1]
+    items.append(
+        dict(
+            key=key,
+            name=name,
+            price=fmt_price(last[price_col], currency),
+            change=float(last["change_24h_pct"]),
+            spark=sub[price_col].tail(30).tolist(),
+        )
+    )
+styling.ticker(items, active=asset)
+
 # ---------- KPI ----------
 c1, c2, c3, c4 = st.columns(4)
 c1.metric(
@@ -182,6 +200,11 @@ with tab_all:
         latest_all[["Aset", "Harga (IDR)", "Harga (USD)", "Perubahan 24j (%)", "Waktu (WIB)"]],
         hide_index=True,
         use_container_width=True,
+        column_config={
+            "Harga (IDR)": st.column_config.NumberColumn(format="localized"),
+            "Harga (USD)": st.column_config.NumberColumn(format="$%.4f"),
+            "Perubahan 24j (%)": st.column_config.NumberColumn(format="%.2f"),
+        },
     )
 
 with st.expander("Tentang data ini"):

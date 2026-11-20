@@ -52,7 +52,7 @@ div[data-testid="stMetric"] label, div[data-testid="stMetricLabel"] { color: var
 div[data-testid="stMetricValue"] { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1.45rem; }
 div[data-testid="stMetricValue"] > div { overflow: visible !important; text-overflow: clip !important; white-space: nowrap; }
 
-/* tab, sidebar, tabel */
+/* tab, sidebar, tabel, tombol */
 .stTabs [data-baseweb="tab-list"] { gap: 22px; border-bottom: 1px solid var(--border); }
 .stTabs [data-baseweb="tab"] { color: var(--muted); }
 .stTabs [aria-selected="true"] { color: var(--gold) !important; }
@@ -60,6 +60,18 @@ div[data-testid="stMetricValue"] > div { overflow: visible !important; text-over
 [data-testid="stDataFrame"] { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .stButton > button { border: 1px solid var(--gold); background: transparent; color: var(--gold); border-radius: 8px; }
 .stButton > button:hover { background: var(--gold); color: #0d1219; }
+
+/* ticker */
+.ticker { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 0.5rem 0 1.5rem 0; }
+.tcard { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+.tcard.active { border-color: var(--gold); }
+.tname { color: var(--muted); font-size: 0.75rem; }
+.tprice { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1.05rem; margin: 2px 0; white-space: nowrap; }
+.tchg { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+.tchg.up { color: var(--up); }
+.tchg.down { color: var(--down); }
+.tcard svg { width: 100%; height: 34px; margin-top: 6px; }
+@media (max-width: 900px) { .ticker { grid-template-columns: repeat(2, 1fr); } }
 """
 
 
@@ -94,3 +106,35 @@ def style_fig(fig, height: int = 420):
     fig.update_xaxes(showgrid=False, linecolor=THEME["border"])
     fig.update_yaxes(gridcolor="rgba(255,255,255,0.06)", zeroline=False)
     return fig
+
+
+def sparkline(values, color: str) -> str:
+    vals = [float(v) for v in values]
+    if len(vals) < 2:
+        return ""
+    lo, hi = min(vals), max(vals)
+    mid = (lo + hi) / 2
+    span = max(hi - lo, abs(mid) * 0.01)  # minimal rentang 1% dari harga
+    lo = mid - span / 2
+    n = len(vals) - 1
+    pts = " ".join(f"{i / n * 100:.1f},{29 - (v - lo) / span * 28:.1f}" for i, v in enumerate(vals))
+    return (
+        f'<svg viewBox="0 0 100 30" preserveAspectRatio="none">'
+        f'<polyline points="{pts}" fill="none" stroke="{color}" stroke-width="1.6" '
+        f'vector-effect="non-scaling-stroke"/></svg>'
+    )
+
+
+def ticker(items: list, active: str | None = None) -> None:
+    cards = ""
+    for it in items:
+        up = it["change"] >= 0
+        color = THEME["up"] if up else THEME["down"]
+        cards += (
+            f'<div class="tcard{" active" if it["key"] == active else ""}">'
+            f'<div class="tname">{it["name"]}</div>'
+            f'<div class="tprice">{it["price"]}</div>'
+            f'<div class="tchg {"up" if up else "down"}">{"▲" if up else "▼"} {abs(it["change"]):.2f}%</div>'
+            f'{sparkline(it["spark"], color)}</div>'
+        )
+    st.markdown(f'<div class="ticker">{cards}</div>', unsafe_allow_html=True)
