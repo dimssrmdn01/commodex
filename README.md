@@ -1,6 +1,6 @@
 <div align="center">
   <img src="assets/banner.svg" alt="Commodex Banner" width="100%">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=26&pause=1000&color=2DD4BF&center=true&vCenter=true&width=700&lines=COMMODEX;Medallion+Data+Pipeline;Bronze+%E2%86%92+Silver+%E2%86%92+Gold;Python+%C2%B7+PostgreSQL+%C2%B7+dbt+%C2%B7+GitHub+Actions" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=26&pause=1000&color=FFD866&center=true&vCenter=true&width=700&lines=COMMODEX;Medallion+Data+Pipeline;Bronze+%E2%86%92+Silver+%E2%86%92+Gold;Python+%C2%B7+PostgreSQL+%C2%B7+dbt+%C2%B7+Streamlit" alt="Typing SVG" />
 </div>
 
 <div align="center">
@@ -9,20 +9,21 @@
 ![Python](https://img.shields.io/badge/Python-3.11-0f172a?style=for-the-badge&logo=python&logoColor=2DD4BF)
 ![dbt](https://img.shields.io/badge/dbt-1.12-0f172a?style=for-the-badge&logo=dbt&logoColor=FF694A)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-0f172a?style=for-the-badge&logo=postgresql&logoColor=60A5FA)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-0f172a?style=for-the-badge&logo=streamlit&logoColor=FFD866)
 ![License](https://img.shields.io/badge/License-MIT-0f172a?style=for-the-badge&logoColor=2DD4BF)
 
 </div>
 
 ## About The Project
 
-**Commodex** adalah pipeline *end-to-end analytics engineering* yang menerapkan **Medallion Architecture** (Bronze → Silver → Gold). Data harga aset diambil dari [CoinGecko API](https://www.coingecko.com/en/api), dibersihkan dan dimodelkan dengan dbt, divalidasi dengan data quality test, lalu disimpan di PostgreSQL cloud (Neon). Seluruh alurnya berjalan otomatis lewat GitHub Actions.
+**Commodex** adalah pipeline *end-to-end analytics engineering* yang menerapkan **Medallion Architecture** (Bronze → Silver → Gold). Data harga aset diambil dari [CoinGecko API](https://www.coingecko.com/en/api), dibersihkan dan dimodelkan dengan dbt, divalidasi dengan data quality test, disimpan di PostgreSQL cloud (Neon), lalu ditampilkan lewat dashboard Streamlit. Seluruh alurnya berjalan otomatis lewat GitHub Actions.
 
 **Key highlights:**
 - **Layered by design.** Bronze menyimpan data mentah apa adanya, Silver membersihkan dan mendeduplikasi, Gold menyajikan agregasi siap analisis.
 - **Tested, not assumed.** 7 tes dbt (`not_null`, `accepted_values`, `unique_combination_of_columns`) dijalankan di setiap eksekusi.
 - **Persistent history.** Setiap run menambah snapshot baru ke Neon, sehingga histori harga terakumulasi dari hari ke hari.
 - **Fail-fast CI.** Jika ingestion gagal, pipeline langsung berhenti dan workflow berstatus merah.
-- **Secure by default.** Kredensial database dibaca dari GitHub Secrets dan environment variable, tidak pernah di-commit.
+- **Secure by default.** Kredensial dibaca dari GitHub Secrets dan environment variable. Dashboard memakai user database read-only.
 - **Reproducible.** Satu `docker compose up` untuk database lokal, versi dbt dikunci di `requirements.txt`.
 
 **Aset yang dilacak:** Bitcoin, Ethereum, Tether, Solana, BNB (harga IDR dan USD).
@@ -35,6 +36,8 @@ flowchart TD
     B -->|dbt staging| C[(Silver<br/>stg_harga_pasar)]
     C -->|dbt mart| D[(Gold<br/>fct_harga_harian)]
     D --> E[dbt tests]
+    C --> H[Streamlit dashboard]
+    D --> H
     F[GitHub Actions<br/>push · cron harian · manual] -.->|orchestrates| A
     G[(Neon PostgreSQL)] --- B
     G --- C
@@ -65,6 +68,7 @@ flowchart TD
 | Ingestion | Python 3.11, requests, pandas, SQLAlchemy |
 | Storage | PostgreSQL: Neon (CI/produksi), Docker Compose (lokal) |
 | Transformation | dbt-core 1.12.0, dbt-postgres 1.11.0, dbt_utils |
+| Dashboard | Streamlit, Plotly (user database read-only) |
 | CI/CD | GitHub Actions (push ke `main`, cron harian 00:00 UTC, manual) |
 
 ## CI/CD
@@ -80,14 +84,37 @@ Workflow `.github/workflows/pipeline.yml` berjalan pada tiga kondisi: push ke `m
 Pipeline menulis ke database Neon, dengan kredensial dari GitHub Secrets. Jika ingestion gagal, step berikutnya tidak dijalankan dan workflow berstatus merah. Workflow sengaja tidak berjalan pada pull request, supaya PR tidak menulis ke database produksi.
 
 <div align="center">
-     <img src="assets/ci-success.png" alt="GitHub Actions run berhasil" width="85%">
+  <img src="assets/ci-success.png" alt="GitHub Actions run berhasil" width="85%">
 </div>
+
+## Dashboard
+
+Dashboard Streamlit membaca layer Silver dan Gold dari Neon: grafik harga per aset, ringkasan harian, dan snapshot terbaru semua aset. Aksesnya lewat user database **read-only**, jadi dashboard tidak bisa mengubah data.
+
+Untuk menjalankan lokal, buat `.streamlit/secrets.toml` (sudah ada di `.gitignore`):
+
+````toml
+[db]
+host = "ep-xxxx.ap-southeast-1.aws.neon.tech"
+port = 5432
+user = "commodex_reader"
+password = "..."
+name = "neondb"
+sslmode = "require"
+````
+
+````bash
+pip install -r dashboard/requirements.txt
+streamlit run dashboard/app.py
+````
 
 ## Project Structure
 
 ````text
 commodex/
 ├── .github/workflows/pipeline.yml   # CI/CD
+├── .streamlit/config.toml           # tema dashboard
+├── dashboard/                       # app.py, styling.py, requirements.txt
 ├── dbt/                             # models, tests, profiles.yml, packages.yml
 ├── src/ingest.py                    # ingestion ke Bronze
 ├── docker-compose.yml               # PostgreSQL lokal
@@ -181,10 +208,16 @@ ORDER BY date_key DESC, asset_id;
 ## Roadmap
 
 - [x] Database cloud persisten (Neon) + GitHub Secrets untuk akumulasi histori
-- [ ] Tambah sumber komoditas riil (emas, minyak)
 - [x] Dashboard (Streamlit) di atas layer Gold
+- [ ] Deploy dashboard ke Streamlit Community Cloud + link demo
+- [ ] Poles UI dashboard (kartu per aset, warna naik/turun)
 - [ ] dbt docs + lineage graph via GitHub Pages
+- [ ] Tambah sumber komoditas riil (emas, minyak)
 
 ## Author
 
 Built by **Dimas Arya Ramadhan** - Undergraduate Data Science student at ITERA.
+
+## License
+
+MIT License.
