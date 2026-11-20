@@ -68,6 +68,28 @@ def load_daily() -> pd.DataFrame:
         """
     )
 
+@st.cache_data(ttl=600, show_spinner=False)
+def load_health():
+    counts = run_query(
+        """
+        select
+            (select count(*) from public.bronze_harga_pasar) as bronze,
+            (select count(*) from public.stg_harga_pasar) as silver,
+            (select count(*) from public.fct_harga_harian) as gold,
+            (select max(ingested_at::timestamp) from public.bronze_harga_pasar) as last_ingest
+        """
+    ).iloc[0]
+    per_day = run_query(
+        """
+        select ingested_at::timestamp::date as hari,
+               count(*) as baris,
+               count(distinct date_trunc('minute', ingested_at::timestamp)) as run
+        from public.bronze_harga_pasar
+        group by 1
+        order by 1
+        """
+    )
+    return counts, per_day
 
 def fmt_price(value: float, currency: str) -> str:
     if currency == "IDR":
@@ -148,7 +170,9 @@ c3.metric("Data pertama", asset_df["last_updated_at"].min().strftime("%d %b %Y")
 c4.metric("Update terakhir (WIB)", latest["last_updated_at"].strftime("%d %b %H:%M"))
 
 st.markdown("<br>", unsafe_allow_html=True)
-tab_price, tab_daily, tab_all = st.tabs(["Harga", "Ringkasan harian", "Semua aset"])
+tab_price, tab_daily, tab_all, tab_health = st.tabs(
+    ["Harga", "Ringkasan harian", "Semua aset", "Pipeline health"]
+)
 
 with tab_price:
     fig = px.area(
@@ -207,6 +231,49 @@ with tab_all:
         },
     )
 
+with tab_health:
+    try:
+        counts, per_day = load_health()
+        bronze, silver, gold = int(counts["bronze"]), int(counts["silver"]), int(counts["gold"])
+        dropped = bronze - silver
+        last_ingest = pd.Timestamp(counts["last_ingest"]).tz_localize("UTC").tz_convert(TZ)
+        age_h = (pd.Timestamp.now(tz=TZ) - last_ingest).total_seconds() / 3600
+
+        h1, h2, h3, h4 = st.columns(4)
+        h1.metric("Bronze (baris mentah)", f"{bronze:,}")
+        h2.metric("Silver (setelah dedup)", f"{silver:,}")
+        h3.metric(
+            "Duplikat dibuang",
+            f"{dropped:,}",
+            delta=f"{dropped / bronze * 100:.1f}% dari Bronze" if bronze else "0%",
+            delta_color="off",
+        )
+        h4.metric("Gold (baris harian)", f"{gold:,}")
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        msg = f"Ingestion terakhir: {last_ingest:%d %b %Y %H:%M} WIB ({age_h:.1f} jam lalu)."
+        if age_h < 26:
+            st.success(msg)
+        else:
+            st.warning(msg + " Pipeline harian seharusnya berjalan tiap 24 jam.")
+
+        fig_h = px.bar(
+            per_day,
+            x="hari",
+            y="run",
+            labels={"hari": "Tanggal", "run": "Run ingestion"},
+            title="Run ingestion per hari",
+        )
+        fig_h.update_traces(marker_color=THEME["gold"])
+        st.plotly_chart(styling.style_fig(fig_h, height=300), use_container_width=True)
+        st.caption(
+            "Satu run menulis 5 baris ke Bronze (satu per aset). "
+            "Setiap push ke `main` juga memicu ingestion, jadi lebih dari satu run per hari itu normal."
+        )
+        st.dataframe(per_day, hide_index=True, use_container_width=True)
+    except Exception as exc:
+        st.warning(f"Data pipeline health belum bisa dimuat ({type(exc).__name__}).")
+        
 with st.expander("Tentang data ini"):
     st.markdown(
         "- **Sumber:** CoinGecko API.\n"
