@@ -31,7 +31,7 @@
 
 <div align="center">
   <a href="https://commodex-thomas.streamlit.app/">
-    <img src="assets/dashboard.png" alt="Commodex dashboard" width="90%">
+    <img src="assetsdashboard.png" alt="Commodex dashboard" width="90%">
   </a>
 </div>
 
