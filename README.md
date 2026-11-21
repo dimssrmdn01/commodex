@@ -6,6 +6,7 @@
 <div align="center">
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Streamlit-0f172a?style=for-the-badge&logo=streamlit&logoColor=FFD866)](https://commodex-thomas.streamlit.app/)
+[![dbt docs](https://img.shields.io/badge/dbt_docs-Lineage-0f172a?style=for-the-badge&logo=dbt&logoColor=FF694A)](https://dimssrmdn01.github.io/commodex/)
 [![Pipeline](https://img.shields.io/github/actions/workflow/status/dimssrmdn01/commodex/pipeline.yml?style=for-the-badge&label=Pipeline&logo=githubactions&logoColor=2DD4BF&labelColor=0f172a)](https://github.com/dimssrmdn01/commodex/actions/workflows/pipeline.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-0f172a?style=for-the-badge&logo=python&logoColor=2DD4BF)
 ![dbt](https://img.shields.io/badge/dbt-1.12-0f172a?style=for-the-badge&logo=dbt&logoColor=FF694A)
@@ -21,6 +22,7 @@
 **Key highlights:**
 - **Layered by design.** Bronze menyimpan data mentah apa adanya, Silver membersihkan dan mendeduplikasi, Gold menyajikan agregasi siap analisis.
 - **Tested, not assumed.** 7 tes dbt (`not_null`, `accepted_values`, `unique_combination_of_columns`) dijalankan di setiap eksekusi.
+- **Documented.** Deskripsi model dan lineage graph dipublikasikan otomatis ke [dbt docs](https://dimssrmdn01.github.io/commodex/).
 - **Persistent history.** Setiap run menambah snapshot baru ke Neon, sehingga histori harga terakumulasi dari hari ke hari.
 - **Observable.** Tab Pipeline health di dashboard menampilkan jumlah baris per layer, duplikat yang dibuang, dan waktu ingestion terakhir.
 - **Fail-fast CI.** Jika ingestion gagal, pipeline langsung berhenti dan workflow berstatus merah.
@@ -60,6 +62,14 @@ flowchart TD
 | Silver | View | `stg_harga_pasar` | Casting numerik, epoch → timestamp, deduplikasi per `asset_id` + `last_updated_timestamp` |
 | Gold | Table | `fct_harga_harian` | Per aset per hari: rata-rata harga IDR/USD, perubahan 24 jam maksimum, jumlah datapoint |
 
+Dokumentasi model dan lineage graph tersedia di **[dbt docs](https://dimssrmdn01.github.io/commodex/)**, dan diperbarui otomatis setiap ada perubahan di folder `dbt/`.
+
+<div align="center">
+  <a href="https://dimssrmdn01.github.io/commodex/">
+    <img src="assets/lineage.png" alt="dbt lineage graph" width="85%">
+  </a>
+</div>
+
 ## Data Quality Tests
 
 | Model | Kolom | Tes |
@@ -77,6 +87,7 @@ flowchart TD
 | Storage | PostgreSQL: Neon (CI/produksi), Docker Compose (lokal) |
 | Transformation | dbt-core 1.12.0, dbt-postgres 1.11.0, dbt_utils |
 | Dashboard | Streamlit, Plotly, di-host di Streamlit Community Cloud |
+| Dokumentasi | dbt docs, di-host di GitHub Pages |
 | CI/CD | GitHub Actions (push ke `main`, cron harian 00:00 UTC, manual) |
 
 ## CI/CD
@@ -90,6 +101,8 @@ Workflow `.github/workflows/pipeline.yml` berjalan pada tiga kondisi: push ke `m
 5. `dbt test`: jalankan 7 data quality test
 
 Pipeline menulis ke database Neon, dengan kredensial dari GitHub Secrets. Jika ingestion gagal, step berikutnya tidak dijalankan dan workflow berstatus merah. Workflow sengaja tidak berjalan pada pull request, supaya PR tidak menulis ke database produksi.
+
+Workflow terpisah `.github/workflows/docs.yml` membangun dbt docs dan mempublikasikannya ke GitHub Pages setiap ada perubahan di folder `dbt/`.
 
 <div align="center">
   <img src="assets/ci-success.png" alt="GitHub Actions run berhasil" width="85%">
@@ -128,8 +141,11 @@ streamlit run dashboard/app.py
 
 ````text
 commodex/
-├── .github/workflows/pipeline.yml   # CI/CD
+├── .github/workflows/
+│   ├── pipeline.yml                 # ingest, dbt run, dbt test
+│   └── docs.yml                     # dbt docs ke GitHub Pages
 ├── .streamlit/config.toml           # tema dashboard
+├── assets/                          # banner dan screenshot
 ├── dashboard/                       # app.py, styling.py, requirements.txt
 ├── dbt/                             # models, tests, profiles.yml, packages.yml
 ├── src/ingest.py                    # ingestion ke Bronze
@@ -228,5 +244,14 @@ ORDER BY date_key DESC, asset_id;
 - [x] Dashboard (Streamlit) di atas layer Gold
 - [x] Deploy dashboard ke Streamlit Community Cloud + link demo
 - [x] Ticker per aset dan tab Pipeline health
+- [x] dbt docs + lineage graph via GitHub Pages
 - [ ] Tab Perbandingan (grafik base 100 dan korelasi antar aset)
-- [ ] dbt docs + lineage graph via GitHub
+- [ ] Tambah sumber komoditas riil (emas, minyak)
+
+## Author
+
+Built by **Dimas Arya Ramadhan** - Undergraduate Data Science student at ITERA.
+
+## License
+
+MIT License.
