@@ -5,28 +5,35 @@
 
 <div align="center">
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Streamlit-0f172a?style=for-the-badge&logo=streamlit&logoColor=FFD866)](https://commodex-thomas.streamlit.app/)
 [![Pipeline](https://img.shields.io/github/actions/workflow/status/dimssrmdn01/commodex/pipeline.yml?style=for-the-badge&label=Pipeline&logo=githubactions&logoColor=2DD4BF&labelColor=0f172a)](https://github.com/dimssrmdn01/commodex/actions/workflows/pipeline.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-0f172a?style=for-the-badge&logo=python&logoColor=2DD4BF)
 ![dbt](https://img.shields.io/badge/dbt-1.12-0f172a?style=for-the-badge&logo=dbt&logoColor=FF694A)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-0f172a?style=for-the-badge&logo=postgresql&logoColor=60A5FA)
-![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-0f172a?style=for-the-badge&logo=streamlit&logoColor=FFD866)
 ![License](https://img.shields.io/badge/License-MIT-0f172a?style=for-the-badge&logoColor=2DD4BF)
 
 </div>
 
 ## About The Project
 
-**Commodex** adalah pipeline *end-to-end analytics engineering* yang menerapkan **Medallion Architecture** (Bronze → Silver → Gold). Data harga aset diambil dari [CoinGecko API](https://www.coingecko.com/en/api), dibersihkan dan dimodelkan dengan dbt, divalidasi dengan data quality test, disimpan di PostgreSQL cloud (Neon), lalu ditampilkan lewat dashboard Streamlit. Seluruh alurnya berjalan otomatis lewat GitHub Actions.
+**Commodex** adalah pipeline *end-to-end analytics engineering* yang menerapkan **Medallion Architecture** (Bronze → Silver → Gold). Data harga aset diambil dari [CoinGecko API](https://www.coingecko.com/en/api), dibersihkan dan dimodelkan dengan dbt, divalidasi dengan data quality test, disimpan di PostgreSQL cloud (Neon), lalu ditampilkan lewat [dashboard Streamlit](https://commodex-thomas.streamlit.app/). Seluruh alurnya berjalan otomatis lewat GitHub Actions.
 
 **Key highlights:**
 - **Layered by design.** Bronze menyimpan data mentah apa adanya, Silver membersihkan dan mendeduplikasi, Gold menyajikan agregasi siap analisis.
 - **Tested, not assumed.** 7 tes dbt (`not_null`, `accepted_values`, `unique_combination_of_columns`) dijalankan di setiap eksekusi.
 - **Persistent history.** Setiap run menambah snapshot baru ke Neon, sehingga histori harga terakumulasi dari hari ke hari.
+- **Observable.** Tab Pipeline health di dashboard menampilkan jumlah baris per layer, duplikat yang dibuang, dan waktu ingestion terakhir.
 - **Fail-fast CI.** Jika ingestion gagal, pipeline langsung berhenti dan workflow berstatus merah.
 - **Secure by default.** Kredensial dibaca dari GitHub Secrets dan environment variable. Dashboard memakai user database read-only.
 - **Reproducible.** Satu `docker compose up` untuk database lokal, versi dbt dikunci di `requirements.txt`.
 
 **Aset yang dilacak:** Bitcoin, Ethereum, Tether, Solana, BNB (harga IDR dan USD).
+
+<div align="center">
+  <a href="https://commodex-thomas.streamlit.app/">
+    <img src="assets/dashboard.png" alt="Commodex dashboard" width="90%">
+  </a>
+</div>
 
 ## Architecture
 
@@ -38,6 +45,7 @@ flowchart TD
     D --> E[dbt tests]
     C --> H[Streamlit dashboard]
     D --> H
+    B --> H
     F[GitHub Actions<br/>push · cron harian · manual] -.->|orchestrates| A
     G[(Neon PostgreSQL)] --- B
     G --- C
@@ -68,7 +76,7 @@ flowchart TD
 | Ingestion | Python 3.11, requests, pandas, SQLAlchemy |
 | Storage | PostgreSQL: Neon (CI/produksi), Docker Compose (lokal) |
 | Transformation | dbt-core 1.12.0, dbt-postgres 1.11.0, dbt_utils |
-| Dashboard | Streamlit, Plotly (user database read-only) |
+| Dashboard | Streamlit, Plotly, di-host di Streamlit Community Cloud |
 | CI/CD | GitHub Actions (push ke `main`, cron harian 00:00 UTC, manual) |
 
 ## CI/CD
@@ -89,7 +97,15 @@ Pipeline menulis ke database Neon, dengan kredensial dari GitHub Secrets. Jika i
 
 ## Dashboard
 
-Dashboard Streamlit membaca layer Silver dan Gold dari Neon: grafik harga per aset, ringkasan harian, dan snapshot terbaru semua aset. Aksesnya lewat user database **read-only**, jadi dashboard tidak bisa mengubah data.
+**[Buka demo langsung](https://commodex-thomas.streamlit.app/)**. Dashboard membaca layer Bronze, Silver, dan Gold dari Neon lewat user database **read-only**, jadi tidak bisa mengubah data.
+
+| Bagian | Isi |
+| :--- | :--- |
+| Ticker | Harga, perubahan 24 jam, dan sparkline untuk kelima aset |
+| Harga | Grafik harga per aset dari layer Silver, dalam IDR atau USD |
+| Ringkasan harian | Tabel Gold `fct_harga_harian` per aset |
+| Semua aset | Snapshot terbaru semua aset |
+| Pipeline health | Jumlah baris per layer, duplikat yang dibuang, waktu ingestion terakhir, run per hari |
 
 Untuk menjalankan lokal, buat `.streamlit/secrets.toml` (sudah ada di `.gitignore`):
 
@@ -204,20 +220,13 @@ ORDER BY date_key DESC, asset_id;
 - Sumber data saat ini hanya aset kripto.
 - Setiap push ke `main` juga menjalankan ingestion, sehingga Bronze menerima snapshot tambahan di luar jadwal harian. Deduplikasi di Silver menjaga data tetap bersih.
 - Bronze bersifat append-only, sehingga run ulang pada hari yang sama menambah baris snapshot baru.
+- Dashboard di paket gratis Streamlit Community Cloud bisa "tidur" saat lama tidak dikunjungi, dan data di-cache 10 menit.
 
 ## Roadmap
 
 - [x] Database cloud persisten (Neon) + GitHub Secrets untuk akumulasi histori
 - [x] Dashboard (Streamlit) di atas layer Gold
-- [ ] Deploy dashboard ke Streamlit Community Cloud + link demo
-- [ ] Poles UI dashboard (kartu per aset, warna naik/turun)
-- [ ] dbt docs + lineage graph via GitHub Pages
-- [ ] Tambah sumber komoditas riil (emas, minyak)
-
-## Author
-
-Built by **Dimas Arya Ramadhan** - Undergraduate Data Science student at ITERA.
-
-## License
-
-MIT License.
+- [x] Deploy dashboard ke Streamlit Community Cloud + link demo
+- [x] Ticker per aset dan tab Pipeline health
+- [ ] Tab Perbandingan (grafik base 100 dan korelasi antar aset)
+- [ ] dbt docs + lineage graph via GitHub
