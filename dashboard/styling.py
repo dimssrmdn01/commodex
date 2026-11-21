@@ -98,7 +98,7 @@ def style_fig(fig, height: int = 420):
         height=height,
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        font=dict(color=THEME["muted"], family="Sora"),
+        font=dict(color=THEME["muted"], family="Sora, sans-serif"),
         margin=dict(l=0, r=0, t=40, b=40),
         hovermode="x unified",
         title=dict(font=dict(size=15, color=THEME["text"])),

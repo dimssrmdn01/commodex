@@ -245,10 +245,42 @@ with tab_health:
         h3.metric(
             "Duplikat dibuang",
             f"{dropped:,}",
-            delta=f"{dropped / bronze * 100:.1f}% dari Bronze" if bronze else "0%",
-            delta_color="off",
+            help=f"{dropped / bronze * 100:.1f}% dari Bronze" if bronze else None,
         )
         h4.metric("Gold (baris harian)", f"{gold:,}")
+        st.caption(
+            "Silver membuang baris yang sama persis (aset dan timestamp dari CoinGecko). "
+            "Nilai 0 berarti setiap run membawa data baru. Deduplikasi tetap berjaga kalau API mengembalikan data lama."
+        )
+
+        msg = f"Ingestion terakhir: {last_ingest:%d %b %Y %H:%M} WIB ({age_h:.1f} jam lalu)."
+        if age_h < 26:
+            st.success(msg)
+        else:
+            st.warning(msg + " Pipeline harian seharusnya berjalan tiap 24 jam.")
+
+        fig_h = px.bar(
+            per_day,
+            x="hari",
+            y="run",
+            labels={"hari": "Tanggal", "run": "Run ingestion"},
+            title="Run ingestion per hari",
+        )
+        fig_h.update_traces(marker_color=THEME["gold"])
+        fig_h.update_xaxes(dtick=86400000, tickformat="%d %b")
+        st.plotly_chart(styling.style_fig(fig_h, height=300), use_container_width=True)
+        st.caption(
+            "Satu run menulis 5 baris ke Bronze (satu per aset). "
+            "Setiap push ke `main` juga memicu ingestion, jadi lebih dari satu run per hari itu normal."
+        )
+        st.dataframe(
+            per_day,
+            hide_index=True,
+            use_container_width=True,
+            column_config={"hari": "Tanggal", "baris": "Baris di Bronze", "run": "Run ingestion"},
+        )
+    except Exception as exc:
+        st.warning(f"Data pipeline health belum bisa dimuat ({type(exc).__name__}).")
 
         st.markdown("<br>", unsafe_allow_html=True)
         msg = f"Ingestion terakhir: {last_ingest:%d %b %Y %H:%M} WIB ({age_h:.1f} jam lalu)."
